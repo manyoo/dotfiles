@@ -1,3 +1,4 @@
 directories = []
-files = [ ".life"
+files = [ ".emacs"
+        , ".life"
         ]
