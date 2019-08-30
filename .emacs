@@ -19,6 +19,7 @@
 (setq-default line-spacing 3)
 
 ;; hide or shorten minor mode names
+(package-install 'diminish)
 (require 'diminish)
 
 
@@ -32,7 +33,9 @@
    kept-old-versions 2
    version-control t)       ; use versioned backups
 
+(package-install 'counsel)
 ;; ivy
+(package-install 'ivy) 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
@@ -56,6 +59,7 @@
 (diminish 'ivy-mode)
 
 ;; powerline
+(package-install 'powerline)
 (require 'powerline)
 (powerline-default-theme)
 (set-face-attribute 'mode-line nil
@@ -63,9 +67,7 @@
                     :background "orange"
                     :box nil)
 
-;; set the default backup file directory
-(setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
-
+(package-install 'smooth-scrolling)
 (require 'smooth-scrolling)
 (smooth-scrolling-mode 1)
 
@@ -77,33 +79,41 @@
 (setq max-mini-window-height 1)
 
 ;; find-file-in-project mode
+(package-install 'find-file-in-project)
+(package-install 'find-file-in-repository)
 (global-set-key (kbd "C-x f") 'find-file-in-repository)
 
 ;; for linum-mode
 (setq global-linum-mode 't)
 
 ;; for the projectile mode
+(package-install 'projectile)
 (projectile-global-mode)
 
 ;; for git-gutter
+(package-install 'git-gutter+)
 (global-git-gutter+-mode)
 (diminish 'git-gutter+-mode)
 
 ;; for ido-mode
+(package-install 'ido)
 (require 'ido)
 (setq ido-enable-flex-matching 't)
 (setq ido-everywhere 't)
 (ido-mode 't)
 
 ;; For Javascript IDE
+(package-install 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 (setq js2-highlight-level 3)
 
 ;; use web-mode for .jsx files
+(package-install 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 
 ;; http://www.flycheck.org/manual/latest/index.html
+(package-install 'flycheck)
 (require 'flycheck)
 (diminish 'flycheck-mode "Fly")
 
@@ -111,6 +121,7 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; shader mode
+(package-install 'shader-mode)
 (add-hook 'auto-mode-alist '("\\.shader$" . shader-mode))
 
 ;; For code folding
@@ -124,6 +135,7 @@
 
 
 ;; enable the dummy-parenthes mode
+(package-install 'dummyparens)
 (setq global-dummyparens-mode 't)
 
 ;; Show-hide
@@ -176,6 +188,7 @@
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;; purescript
+(package-install 'psc-ide)
 (require 'psc-ide)
 (add-hook 'purescript-mode-hook
           (lambda ()
@@ -188,6 +201,7 @@
 (setq psc-ide-purs-executable "~/.nvm/versions/node/v10.5.0/bin/purs")
 
 ;; omnisharp
+(package-install 'omnisharp)
 (add-hook 'csharp-mode-hook 'omnisharp-mode)
 (eval-after-load
   'company
@@ -206,18 +220,20 @@
 (add-hook 'csharp-mode-hook 'my-csharp-mode-setup t)
 
 ;; add the mono path to emacs' internal PATH variable
-(setenv "PATH" (concat (getenv "PATH") ":/Library/Frameworks/Mono.framework/Versions/Current/Commands"))
-(setq exec-path (append exec-path '("/Library/Frameworks/Mono.framework/Versions/Current/Commands")))
+;;(setenv "PATH" (concat (getenv "PATH") ":/Library/Frameworks/Mono.framework/Versions/Current/Commands"))
+;;(setq exec-path (append exec-path '("/Library/Frameworks/Mono.framework/Versions/Current/Commands")))
 
 ;; the newer version like 1.31.1 doesn't work well, so we use old version
-(setq omnisharp-server-executable-path "~/.emacs.d/.cache/omnisharp/server/v1.30.1/run")
-(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
+;;(setq omnisharp-server-executable-path "~/.emacs.d/.cache/omnisharp/server/v1.30.1/run")
+;;(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
 
 
 ;; window-numbering mode
+(package-install 'window-numbering)
 (window-numbering-mode 't)
 
 ;; side bar project directory tree
+(package-install 'neotree)
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (set neo-theme 'classic)
@@ -268,12 +284,14 @@
      (360 . "#FFCB6B"))))
  '(vc-annotate-very-old-color "#FFCB6B"))
 
+(package-install 'smex)
 ;; smex key binding
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; the old M-x
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+(package-install 'company)
 ;; setup company mode in all buffers
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-dabbrev-downcase nil)
@@ -283,6 +301,8 @@
 (diminish 'company-mode "Comp")
 
 (diminish 'projectile-mode "Proj")
+
+(package-install 'magit)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
