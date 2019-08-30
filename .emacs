@@ -78,8 +78,7 @@
 ;(setq-default indent-tabs-mode nil)  ;; Enable this will make some lines blink in Yosemite.
 (setq max-mini-window-height 1)
 
-;; find-file-in-project mode
-(package-install 'find-file-in-project)
+;; find-file-in-repository mode
 (package-install 'find-file-in-repository)
 (global-set-key (kbd "C-x f") 'find-file-in-repository)
 
